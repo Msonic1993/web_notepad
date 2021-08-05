@@ -4,7 +4,7 @@
   <title>Notatnik</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
-  <link href="/public/style.css" rel="stylesheet">
+  <link href="/src/public/style.css" rel="stylesheet">
 </head>
 
 <body class="body">
@@ -16,8 +16,8 @@
     <div class="container">
       <div class="menu">
         <ul>
-          <li><a href="/">Strona główna</a></li>
-          <li><a href="/?action=create">Nowa notatka</a></li>
+          <li><a href="/src/">Strona główna</a></li>
+          <li><a href="/src/?action=create">Nowa notatka</a></li>
         </ul>
       </div>
 

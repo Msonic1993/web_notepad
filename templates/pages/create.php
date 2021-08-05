@@ -7,7 +7,7 @@
         <div>Treść: <?php echo $params['description'] ?></div>
       </div>
     <?php else : ?>
-      <form class="note-form" action="/?action=create" method="post">
+      <form class="note-form" action="/src/?action=create" method="post">
         <ul>
           <li>
             <label>Tytuł <span class="required">*</span></label>
