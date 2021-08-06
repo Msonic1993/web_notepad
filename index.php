@@ -27,5 +27,6 @@ try {
         echo $e->getMessage();
     }catch (Throwable $e){
     echo "<h1> Wystąpił błąd w aplikacji </h1>";
+    dump($e);
 }
 
