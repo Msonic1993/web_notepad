@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Exception\ConfigurationException;
+
+require_once("Exceptions/ConfigurationException.php");
 require_once("src/View.php");
 require_once("src/Database.php");
+
 class Controller
 {
   private const DEFAULT_ACTION = 'list';
@@ -22,6 +26,9 @@ class Controller
 
   public function __construct(array $request)
   {
+    if (empty(self::$configuration['db'])){
+        throw new ConfigurationException('Configuration error');
+    }
     $db = new Database(self::$configuration['db']);
     $this->request = $request;
     $this->view = new View();
