@@ -22,7 +22,6 @@ class Database
             $this->createConnection($config);
         } catch (PDOException $e) {
             throw new StorageException('Connection error');
-
         }
     }
 
@@ -54,9 +53,7 @@ class Database
         }   catch(Throwable $e){
             throw new StorageException('Nie udało się wyświetlić notatki',400,$e);
 
-
         }
-
     }
 
     public function getNote($id): array
@@ -70,8 +67,6 @@ class Database
 
         }   catch(Throwable $e){
             throw new StorageException('Nie udało się wyświetlić notatki',400,$e);
-
-
         }
 
     }
@@ -82,7 +77,6 @@ class Database
         $user = $config['user'];
         $password = $config['password'];
         $this->conn = new PDO($dsn,$user,$password,[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-
     }
 
    private function validateConfig(array $config): void
