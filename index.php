@@ -10,12 +10,12 @@ use Throwable;
 require_once("src/Utils/debug.php");
 require_once("src/Controller.php");
 require_once("src/Exceptions/AppException.php");
+require_once("src/Request.php");
 $configuration = require_once("config/config.php");
 
-$request = [
-  'get' => $_GET,
-  'post' => $_POST
-];
+$request = new Request($_GET,$_POST);
+
+
 try {
     //$controller = new Controller($request);
     //$controller->run();

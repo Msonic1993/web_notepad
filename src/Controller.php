@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use App\Exception\ConfigurationException;
+use App\Exception\NotFoundException;
 
 require_once("Exceptions/ConfigurationException.php");
 require_once("src/View.php");
@@ -29,7 +30,7 @@ class Controller
      * @throws ConfigurationException
      * @throws Exception\StorageException
      */
-    public function __construct(array $request)
+    public function __construct(Request $request)
   {
     if (empty(self::$configuration['db'])){
         throw new ConfigurationException('Configuration error');
@@ -54,23 +55,33 @@ class Controller
         break;
       case 'show':
           $page = 'show';
-          $data = $this->getRequestGet();
-          $noteId = $data['id'];
-          $viewParams = [
-              'note' =>  $this->database->getNote($noteId),
-              'before' =>$data['before'] ?? null
+          $data = $this->request->getParam('id');
+//          $noteId = (int) ($data['id'] ?? null);
+            dump($data);
+            exit;
 
-          ];
+          if (!$noteId) {
+              header('Location: /src/?error=missingNoteId');
+              exit;
+          }
+          try {
+              $viewParams = [
+                  'note' =>  $this->database->getNote($noteId),
+              ];
+
+          } catch (NotFoundException $e){
+              header('Location: /src/?error=noteNotFound');
+              exit;
+          }
         break;
       default:
         $page = 'list';
         $data = $this->getRequestGet();
         $viewParams = [
             'notes' =>  $this->database->getNotes(),
-            'before' =>$data['before'] ?? null
-
+            'before' =>$data['before'] ?? null,
+            'error' =>$data['error'] ?? null
         ];
-
         break;
     }
     $this->view->render($page, $viewParams ?? []);
@@ -78,8 +89,8 @@ class Controller
 
   private function action(): string
   {
-    $data = $this->getRequestGet();
-    return $data['action'] ?? self::DEFAULT_ACTION;
+      $action = $this->request->getParam('action');
+      return $action ?? self::DEFAULT_ACTION;
   }
 
   private function getRequestGet(): array

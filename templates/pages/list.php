@@ -25,7 +25,17 @@
       }
       ?>
     </div>
-
+      <div class="error">
+          <?php
+          if (!empty($params['noteNotFound'])) {
+              switch ($params['noteNotFound']) {
+                  case 'noteNotFound':
+                      echo 'Nie znaleziono notatki';
+                      break;
+              }
+          }
+          ?>
+      </div>
     <div class="tbl-header">
       <table cellpadding="0" cellspacing="0" border="0">
         <thead>

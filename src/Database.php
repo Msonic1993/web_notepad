@@ -4,12 +4,14 @@ declare(strict_types=1);
 namespace App;
 
 use App\Exception\ConfigurationException;
+use App\Exception\NotFoundException;
 use App\Exception\StorageException;
 use PDO;
 use PDOException;
 use Throwable;
 
 require_once("Exceptions/StorageException.php");
+require_once("Exceptions/NotFoundException.php");
 
 class Database
 {
@@ -56,19 +58,21 @@ class Database
         }
     }
 
-    public function getNote($id): array
+    public function getNote(int $id): array
     {
         try {
-            $notes = [];
+            $note = [];
             $query = "SELECT id, title, description, created FROM notes where id = $id";
             $result = $this->conn->query($query,PDO::FETCH_ASSOC);
-            $notes = $result->fetch();
-            return $notes;
+            $note = $result->fetch();
 
         }   catch(Throwable $e){
-            throw new StorageException('Nie udało się wyświetlić notatki',400,$e);
+            throw new NotFoundException('Nie udało się wyświetlić notatki',400,$e);
         }
-
+        if (!$note) {
+            throw new NotFoundException("Notakta o id: $id nie istnieje");
+        }
+        return $note;
     }
 
     private function createConnection(array $config): void
