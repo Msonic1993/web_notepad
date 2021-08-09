@@ -40,6 +40,20 @@ class Database
         }   catch(Throwable $e){
             throw new StorageException('Nie udało się utworzyć notatki',400,$e);
 
+        }
+    }
+    public function getNotes(): array
+    {
+        try {
+            $notes = [];
+            $query = "SELECT id, title, created FROM notes";
+            $result = $this->conn->query($query,PDO::FETCH_ASSOC);
+            $notes = $result->fetchAll();
+            return $notes;
+
+        }   catch(Throwable $e){
+            throw new StorageException('Nie udało się wyświetlić notatki',400,$e);
+
 
         }
 

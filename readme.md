@@ -1,19 +1,20 @@
-# Dodawanie nowej notatki
+# Baza danych - zapis notatki oraz wyjątki
 
-* zaczynamy pracować na przygotowanym szablonie graficznym, pliki do ściągnięcia
+* wprowadzenie teoretyczne do baz danych - TOOD
+* wprowadzenie teoretyczne do wyjątków - TODO
 
 ## Cel
 
-Obsługa dodawania nowej notatki.
+* Wdrożenie obsługi bazy danych. Zapisywanie notatek w DB.
+* Wprowadzenie obsługi błędów.
 
 ## Krok po kroku
 
-1. utworzenie formularza do dodawania notatki
-
-2. obsługa danych przesłanych przez formularz
-   * omówić $_GET i $_POST
-   * bezpieczeństwo - dane pochodzące z zewnątrz, eskejpowanie, XSS
-
-3. wyświetlenie danych przesłanych przez formularz
-
-4. utworzenie klasy kontrolera - refactoring
+1. utworzenie konfiguracji dla aplikacji
+2. przekazanie konfiguracji do kontrolera
+3. utworzenie biblioteki do obsługi bazy danych
+   * metoda do walidacji konfiguracji
+   * nawiązywanie połączenia
+   * dodanie obsługi błędów - ustawienie ENV
+4. utworzenie tabeli w DB
+5. dodanie metod odpowiedzialnych za zapis

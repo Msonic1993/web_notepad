@@ -42,24 +42,18 @@ class Controller
 
   public function run(): void
   {
-    $viewParams = [];
-
     switch ($this->action()) {
       case 'create':
         $page = 'create';
-        $created = false;
-
         $data = $this->getRequestPost();
         if (!empty($data)) {
           $created = true;
           $this->database->createNote($data);
-          header('Location: /src');
-
+          header('Location: /src/?before=created');
         }
-
-        $viewParams['created'] = $created;
         break;
       case 'show':
+//          $this->database->showNote();
         $viewParams = [
           'title' => 'Moja notatka',
           'description' => 'Opis'
@@ -67,7 +61,13 @@ class Controller
         break;
       default:
         $page = 'list';
-        $viewParams['resultList'] = "wyświetlamy notatki";
+        $data = $this->getRequestGet();
+        $viewParams = [
+            'notes' =>  $this->database->getNotes(),
+            'before' =>$data['before'] ?? null
+
+        ];
+
         break;
     }
 
