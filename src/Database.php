@@ -59,6 +59,23 @@ class Database
 
     }
 
+    public function getNote($id): array
+    {
+        try {
+            $notes = [];
+            $query = "SELECT id, title, description, created FROM notes where id = $id";
+            $result = $this->conn->query($query,PDO::FETCH_ASSOC);
+            $notes = $result->fetch();
+            return $notes;
+
+        }   catch(Throwable $e){
+            throw new StorageException('Nie udało się wyświetlić notatki',400,$e);
+
+
+        }
+
+    }
+
     private function createConnection(array $config): void
     {
         $dsn = "mysql:dbname={$config['database']};host={$config['host']}";

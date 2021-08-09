@@ -41,13 +41,13 @@
     <div class="tbl-content">
       <table cellpadding="0" cellspacing="0" border="0">
         <tbody>
-          <?php foreach ($params['notes'] ?? [] as $notes) : ?>
+          <?php foreach ($params['notes'] ?? [] as $note) : ?>
             <tr>
-              <td><?php echo (int) $notes['id'] ?></td>
-              <td style="text-align: center"><?php echo htmlentities($notes['title']) ?></td>
-              <td><?php echo htmlentities($notes['created']) ?></td>
+              <td><?php echo (int) $note['id'] ?></td>
+              <td style="text-align: center"><?php echo htmlentities($note['title']) ?></td>
+              <td><?php echo htmlentities($note['created']) ?></td>
               <td>
-                <a href="/?action=show&id=<?php echo (int) $notes['id'] ?>">
+                <a href="/src/?action=show&id=<?php echo (int) $note['id'] ?>">
                   <button>Szczegóły</button>
                 </a>
               </td>

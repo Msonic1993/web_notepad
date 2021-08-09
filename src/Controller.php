@@ -53,11 +53,14 @@ class Controller
         }
         break;
       case 'show':
-//          $this->database->showNote();
-        $viewParams = [
-          'title' => 'Moja notatka',
-          'description' => 'Opis'
-        ];
+          $page = 'show';
+          $data = $this->getRequestGet();
+          $noteId = $data['id'];
+          $viewParams = [
+              'note' =>  $this->database->getNote($noteId),
+              'before' =>$data['before'] ?? null
+
+          ];
         break;
       default:
         $page = 'list';
@@ -70,8 +73,7 @@ class Controller
 
         break;
     }
-
-    $this->view->render($page, $viewParams);
+    $this->view->render($page, $viewParams ?? []);
   }
 
   private function action(): string
