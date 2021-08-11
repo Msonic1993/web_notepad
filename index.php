@@ -8,7 +8,7 @@ use App\Exception\AppException;
 use Throwable;
 
 require_once("src/Utils/debug.php");
-require_once("src/Controller.php");
+require_once("src/NoteController.php");
 require_once("src/Exceptions/AppException.php");
 require_once("src/Request.php");
 $configuration = require_once("config/config.php");
@@ -17,10 +17,10 @@ $request = new Request($_GET,$_POST);
 
 
 try {
-    //$controller = new Controller($request);
+    //$controller = new NoteController($request);
     //$controller->run();
-    Controller::initConfiguration($configuration);
-    (new Controller($request))->run();
+    AbstractController::initConfiguration($configuration);
+    (new NoteController($request))->run();
 
     }catch (AppException $e) {
         echo "<h1> Wystąpił błąd w aplikacji </h1>";
