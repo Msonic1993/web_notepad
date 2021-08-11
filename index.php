@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\NoteController;
 use App\Exception\AppException;
 use Throwable;
 
