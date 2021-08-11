@@ -8,7 +8,7 @@ use App\Exception\ConfigurationException;
 use App\Exception\NotFoundException;
 
 
-require_once("src/AbstractController.php");
+require_once("src/controller/AbstractController.php");
 
 class NoteController extends AbstractController
 {

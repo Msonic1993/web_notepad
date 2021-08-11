@@ -7,7 +7,7 @@ namespace App;
 
 use App\Exception\ConfigurationException;
 
-require_once("Exceptions/ConfigurationException.php");
+require_once("src/Exceptions/AppException.php");
 require_once("src/View.php");
 require_once("src/Database.php");
 
@@ -32,7 +32,6 @@ abstract class AbstractController
             throw new ConfigurationException('Configuration error');
         }
         $this->database = new Database(self::$configuration['db']);
-
         $this->request = $request;
         $this->view = new View();
     }
@@ -45,7 +44,6 @@ abstract class AbstractController
             $this->$action();
         }
         $this->$action();
-
     }
 
     private function action(): string

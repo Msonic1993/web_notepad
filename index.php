@@ -8,9 +8,11 @@ use App\Exception\AppException;
 use Throwable;
 
 require_once("src/Utils/debug.php");
-require_once("src/NoteController.php");
+require_once("src/controller/NoteController.php");
+require_once("src/controller/AbstractController.php");
 require_once("src/Exceptions/AppException.php");
 require_once("src/Request.php");
+
 $configuration = require_once("config/config.php");
 
 $request = new Request($_GET,$_POST);
