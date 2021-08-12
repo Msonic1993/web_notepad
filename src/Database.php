@@ -43,10 +43,27 @@ class Database
 
         }
     }
+
+    public function updateNote(int $noteId, array $data): void
+    {
+        try {
+            $title = $this->conn->quote($data['title']);
+            $desc = $this->conn->quote($data['description']);
+
+            $query = "UPDATE notes SET title = $title , description = $desc  WHERE id = $noteId ";
+            $this->conn->exec($query);
+
+        }   catch(Throwable $e){
+            throw new StorageException('Nie udało się zaktualizwać notatki',400,$e);
+
+        }
+    }
+
     public function getNotes(): array
     {
         try {
             $notes = [];
+
             $query = "SELECT id, title, created FROM notes";
             $result = $this->conn->query($query,PDO::FETCH_ASSOC);
             $notes = $result->fetchAll();

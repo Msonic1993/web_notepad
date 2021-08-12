@@ -56,6 +56,7 @@ abstract class AbstractController
         $to .= '?' . $queryParams;
         header("Location: $to");
     }
+
     private function action(): string
     {
         return$this->request->getParam('action',self::DEFAULT_ACTION);

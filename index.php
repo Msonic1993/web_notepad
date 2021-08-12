@@ -16,7 +16,7 @@ require_once("src/Request.php");
 
 $configuration = require_once("config/config.php");
 
-$request = new Request($_GET,$_POST);
+$request = new Request($_GET,$_POST, $_SERVER);
 
 
 try {
