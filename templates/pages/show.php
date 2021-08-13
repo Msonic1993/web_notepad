@@ -15,7 +15,7 @@
     <?php else : ?>
         <div>Brak notatki do wyświetlenia</div>
     <?php endif; ?>
-    <a href="/">
+    <a href="/src/">
         <button>Powrót do listy notatek</button>
     </a>
 </div>
