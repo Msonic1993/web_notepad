@@ -2,7 +2,7 @@
 
 <head>
   <title>Notatnik</title>
-  <meta charset="utf-8">
+    <meta charset="utf-8" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
   <link href="/src/public/style.css" rel="stylesheet">
 </head>

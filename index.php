@@ -17,7 +17,7 @@ require_once("src/Request.php");
 
 $configuration = require_once("config/config.php");
 
-$request = new Request($_GET,$_POST, $_SERVER);
+$request = new Request($_GET, $_POST, $_SERVER);
 
 
 try {
@@ -26,10 +26,10 @@ try {
     AbstractController::initConfiguration($configuration);
     (new NoteController($request))->run();
 
-    }catch (AppException $e) {
-        echo "<h1> Wystąpił błąd w aplikacji </h1>";
-        echo $e->getMessage();
-    }catch (Throwable $e){
+} catch (AppException $e) {
+    echo "<h1> Wystąpił błąd w aplikacji </h1>";
+    echo $e->getMessage();
+} catch (Throwable $e) {
     echo "<h1> Wystąpił błąd w aplikacji </h1>";
     dump($e);
 }
