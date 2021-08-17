@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\NotFoundException;
+
 require_once('src/controller/AbstractController.php');
 
 class NoteController extends AbstractController
@@ -33,10 +34,14 @@ class NoteController extends AbstractController
 
   public function listAction(): void
   {
+    $sortBy = $this->request->getParam('sortby', 'title');
+    $sortOrder = $this->request->getParam('sortorder', 'desc');
+
     $this->view->render(
       'list',
       [
-        'notes' => $this->database->getNotes(),
+        'sort' => ['by' => $sortBy, 'order' => $sortOrder],
+        'notes' => $this->database->getNotes($sortBy, $sortOrder),
         'before' => $this->request->getParam('before'),
         'error' => $this->request->getParam('error')
       ]
@@ -45,6 +50,7 @@ class NoteController extends AbstractController
 
   public function editAction(): void
   {
+
     if ($this->request->isPost()) {
       $noteId = (int) $this->request->postParam('id');
       $noteData = [

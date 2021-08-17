@@ -1,7 +1,7 @@
 <div>
-  <h3> Utwórz notatkę </h3>
+  <h3>Dodawanie notatki</h3>
   <div>
-    <form class="note-form" action="/src/?action=create" method="post">
+    <form class="note-form" action="/?action=create" method="post">
       <ul>
         <li>
           <label>Tytuł <span class="required">*</span></label>
